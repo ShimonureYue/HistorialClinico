@@ -1,36 +1,6 @@
-#laravel-gentelella
-
-Laravel-gentelella is a Laravel 5.3 application with all Gentelella template components.
-
-## Change log
-### 2.0
-- Add Auth support (see **[Update 2.0](#update-20)**)
-
-### 2.1
-- Add errors pages (500, 404 and 403)
-
-### 2.2
-- Add real name and **[Gravatar](https://github.com/thomaswelton/laravel-gravatar)** on UI
-
-### 3.0
-- Laravel-Gentelella run now on Laravel 5.3 !
-
-## Gentelella
-
-Gentellela Admin is a free to use Bootstrap admin template.
-This template uses the default Bootstrap 3 styles along with a variety of powerful jQuery plugins and tools to create a powerful framework for creating admin panels or back-end dashboards.
-
-Theme uses several libraries for charts, calendar, form validation, wizard style interface, off-canvas navigation menu, text forms, date range, upload area, form autocomplete, range slider, progress bars, notifications and much more.
-
-We would love to see how you use this awesome admin template. You can notify us about your site, app or service by tweeting to [@colorlib](https://twitter.com/colorlib). Once the list will grown long enough we will write a post similar to [this](https://colorlib.com/wp/avada-theme-examples/) to showcase the best examples.
-
-
-### Theme Demo
-![Gentelella Bootstrap Admin Template](https://cdn.colorlib.com/wp/wp-content/uploads/sites/2/gentelella-admin-template-preview.jpg "Gentelella Theme Browser Preview")
-
-**[Template Demo](https://colorlib.com/polygon/gentelella/index.html)**
-
-/!\ The home page on laravel-gentelella is empty and not like the demo /!\
+#Historial Clínico
+## Proyecto Base: Laravel -Gentella
+https://github.com/FlorientR/laravel-gentelella
 
 ## Laravel 5.3
 
@@ -50,29 +20,18 @@ Documentation for the framework can be found on the [Laravel website](http://lar
 ### With GIT
 Clone git repository
 
-With Git SSH
 ```
-git clone git@github.com:FlorientR/laravel-gentelella.git
-```
-
-Or with HTTPS
-```
-git clone https://github.com/FlorientR/laravel-gentelella.git
+git clone https://github.com/ShimonureYue/HistorialClinico.git
 ```
 
 Go to the project folder 
 ```
-cd laravel-gentelella
+cd HistorialClinico
 ```
 
 Update composer 
 ```
 composer update
-```
-
-### With Composer
-```
-composer create-project florientr/laravel-gentelella MyProject
 ```
 
 ## Step 2
@@ -98,22 +57,3 @@ npm install
 bower install
 gulp
 ```
-
-###UPDATE 2.0
-
-Add auth support !
-
-**WARNING** : For auth support, configure your ```.env``` file with ```database``` and ```smtp``` connection !
-
-For install auth support, run this follow commands
-
-```
-php artisan migrate
-```
-
-###UPDATE 3.0
-
-####Laravel-Gentelella is now on Laravel 5.3 !!
-
-And you are ready for a new Laravel 5.3 application with Gentelella template !!
-
