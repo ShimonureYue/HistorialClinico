@@ -34,7 +34,7 @@ class PacienteController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function store(Request $request) {
-		$paciente = new Paciente;
+		
 
 		$validator = Validator::make($request->all()
 						, [
@@ -49,12 +49,9 @@ class PacienteController extends Controller {
 							->withErrors($validator)
 							->withInput();
 		}
-
-		$paciente->nombre = $request->nombre;
-		$paciente->a_paterno = $request->a_paterno;
-		$paciente->a_materno = $request->a_materno;
-		$paciente->fecha_nacimiento = $request->fecha_nacimiento;
-
+		//dd($request->all());
+		
+		$paciente = new Paciente($request->all());
 		$paciente->save();
 		Flash::success('Paciente registrado con éxito');
 

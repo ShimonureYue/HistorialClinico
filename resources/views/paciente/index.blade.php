@@ -9,7 +9,7 @@
 
     <div class="clearfix"></div>
 	<div class="row">
-		TODO: Listar todos los pacientes
+		@include('paciente.table')
 	</div>
 </div>
 <!-- /page content -->
