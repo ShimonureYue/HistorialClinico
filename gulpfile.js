@@ -27,6 +27,11 @@ elixir(function(mix) {
 
     // Gentelella
     mix.copy('vendor/bower_components/gentelella/build/css/custom.min.css', 'public/css/gentelella.min.css');
+	
+	//Historial Clínico
+	mix.copy('extra_public/css/historial_clinico.css', 'public/css/historial_clinico.css');
+	
+	
 
     /****************/
     /* Copy Scripts */
@@ -40,6 +45,9 @@ elixir(function(mix) {
 
     // Gentelella
     mix.copy('vendor/bower_components/gentelella/build/js/custom.min.js', 'public/js/gentelella.min.js');
+	
+	//Paciente
+	mix.copy('extra_public/js/paciente.js', 'public/js/paciente.js');
 
     /**************/
     /* Copy Fonts */

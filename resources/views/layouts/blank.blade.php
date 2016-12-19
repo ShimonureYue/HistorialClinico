@@ -2,6 +2,7 @@
 <html lang="en">
 
     <head>
+		<meta name="csrf-token" content="{{ csrf_token() }}">
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 
         <!-- Meta, title, CSS, favicons, etc. -->
@@ -17,6 +18,9 @@
         <link href="{{ asset("css/font-awesome.min.css") }}" rel="stylesheet">
         <!-- Custom Theme Style -->
         <link href="{{ asset("css/gentelella.min.css") }}" rel="stylesheet">
+		<!-- Historial Clínico Style -->
+        <link href="{{ asset("css/historial_clinico.css") }}" rel="stylesheet">
+
 
         @stack('stylesheets')
 

@@ -15,7 +15,10 @@ class PacienteController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function index() {
-		return view('paciente.index');
+
+		$pacientes = Paciente::paginate(env('DEFAULT_PAGINATION'));
+
+		return view('paciente.index', ['pacientes' => $pacientes]);
 	}
 
 	/**
@@ -34,7 +37,7 @@ class PacienteController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function store(Request $request) {
-		
+
 
 		$validator = Validator::make($request->all()
 						, [
@@ -43,19 +46,33 @@ class PacienteController extends Controller {
 					'nombre.required' => 'El nombre es obligatorio'
 						]
 		);
-
+		Flash::success('Paciente registrado con éxito');
 		if ($validator->fails()) {
-			return redirect('paciente/create')
-							->withErrors($validator)
-							->withInput();
+			if ($request->ajax()) {
+				$request->session()->flash('flash_notification.message', 'New customer added successfully.');
+
+				return response()->json($validator->messages(), 200);
+			} else {
+				return redirect('paciente/create')->withErrors($validator)->withInput();
+			}
 		}
-		//dd($request->all());
-		
+
 		$paciente = new Paciente($request->all());
 		$paciente->save();
-		Flash::success('Paciente registrado con éxito');
 
-		return redirect(route('paciente.index'));
+		if ($request->ajax()) {
+			return response()->json(
+							array(
+						'status' => 'success',
+						'message' => 'Paciente creado',
+						'data' => array(
+							'paciente_id' => $paciente->id
+						)
+							), 201);
+		} else {
+			Flash::success('Paciente registrado con éxito');
+			return redirect(route('paciente.index'));
+		}
 	}
 
 	/**
@@ -95,8 +112,23 @@ class PacienteController extends Controller {
 	 * @param  int  $id
 	 * @return \Illuminate\Http\Response
 	 */
+	/*
+	  public function destroy($id) {
+
+
+	  $paciente = Paciente::find($id);
+
+	  $paciente->delete();
+
+
+	  }
+	 * 
+	 */
+
+
 	public function destroy($id) {
-		//
+		//echo $id;
+		return response()->json(['Hola mundo', $id]);
 	}
 
 }

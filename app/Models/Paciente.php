@@ -73,5 +73,15 @@ class Paciente extends Model {
 		'religion' => 'string',
         'deleted_at' => 'datetime'
     ];
+	
+	/**
+	 * Relation OneToOne with Dirección
+	 * 
+	 * @return relation
+	 */
+	public function direccion()
+    {
+        return $this->hasOne('App\Models\Direccion');
+    }
 
 }

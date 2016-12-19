@@ -11,7 +11,7 @@
 				<div class="clearfix"></div>
 			</div>
 			<div class="x_content">
-				
+
 				<div class="" role="tabpanel" data-example-id="togglable-tabs">
 					<ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
                         <li role="presentation" class="active">
@@ -24,12 +24,15 @@
 					<div id="myTabContent" class="tab-content">
 						@include('flash::errors')
                         <div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="identificacion-tab">
-							{!! Form::open(['route' => 'paciente.store']) !!}
-								@include('paciente.fields')
-							{!! Form::close() !!}
+							{{ Form::open(['url' => 'paciente','id' => 'form_paciente']) }}
+							
+							@include('paciente.fields')
+							{{ Form::close() }}
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="domicilio-tab">
-							Domicilio Tab
+							{{ Form::open(['url' => 'domicilio.store','id' => 'ficha']) }}
+							@include('paciente.domicilio.fields')
+							{{ Form::close() }}
                         </div>
 					</div>
 				</div>
@@ -49,3 +52,10 @@
 </footer>
 <!-- /footer content -->
 @endsection
+
+@push('scripts')
+<script>
+	var url_base="{{asset('/')}}";
+</script>
+<script src="{{ asset("js/paciente.js") }}"></script>
+@endpush
