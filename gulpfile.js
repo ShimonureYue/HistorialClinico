@@ -48,6 +48,7 @@ elixir(function(mix) {
 	
 	//Paciente
 	mix.copy('extra_public/js/paciente.js', 'public/js/paciente.js');
+	mix.copy('extra_public/js/functions.js', 'public/js/functions.js');
 
     /**************/
     /* Copy Fonts */

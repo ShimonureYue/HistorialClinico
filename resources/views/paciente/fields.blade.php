@@ -70,7 +70,6 @@
 
 	<div class="col-xs-12 form-group text-right">
 		<a href="{!! route('paciente.index') !!}" class="btn btn-danger">Cancelar</a>
-		<a onclick="crearPaciente()" class="btn btn-danger">CREAR</a>
 		{!! Form::submit('Guardar', ['class' => 'btn btn-success']) !!}
 	</div>
 

@@ -15,10 +15,20 @@ $(document).ready(function () {
 			url: url_base + 'paciente',
 			success: function (data) {
 				console.log(data);
+				//Paso 2. Domicilio
+				$('#domicilio-tab').tab('show');
 				//$("#task" + task_id).remove();
 			},
 			error: function (data) {
-				console.log('Error:', data);
+				showErrorsFlashDiv($('#flashajax_error'), data.responseJSON.data);
+				/*
+				$('#flashajax_error').removeClass('hidden').addClass('show');
+				$("#flashajax_error ul").empty();
+				$.each(data.responseJSON.data, function (index, value) {
+					$("#flashajax_error ul").append('<li>' + value + '</li>');
+				});
+				*/
+				//console.log('Error:', d);
 			}
 		});
 	});

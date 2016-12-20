@@ -10,6 +10,7 @@
 				<h2>Paciente</h2>
 				<div class="clearfix"></div>
 			</div>
+			@include('includes/flashajax')
 			<div class="x_content">
 
 				<div class="" role="tabpanel" data-example-id="togglable-tabs">
@@ -58,4 +59,5 @@
 	var url_base="{{asset('/')}}";
 </script>
 <script src="{{ asset("js/paciente.js") }}"></script>
+<script src="{{ asset("js/functions.js") }}"></script>
 @endpush

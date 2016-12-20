@@ -49,9 +49,11 @@ class PacienteController extends Controller {
 		Flash::success('Paciente registrado con éxito');
 		if ($validator->fails()) {
 			if ($request->ajax()) {
-				$request->session()->flash('flash_notification.message', 'New customer added successfully.');
-
-				return response()->json($validator->messages(), 200);
+				return response()->json(array(
+							'status' => 'error',
+							'message' => 'Error in validation form',
+							'data' => $validator->messages()
+								), 400);
 			} else {
 				return redirect('paciente/create')->withErrors($validator)->withInput();
 			}
@@ -64,7 +66,7 @@ class PacienteController extends Controller {
 			return response()->json(
 							array(
 						'status' => 'success',
-						'message' => 'Paciente creado',
+						'message' => 'Ficha de identificación, creada con éxito.',
 						'data' => array(
 							'paciente_id' => $paciente->id
 						)
