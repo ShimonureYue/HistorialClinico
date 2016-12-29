@@ -17,6 +17,7 @@ Route::get('/', 'HomeController@index');
 
 Route::group(['middleware' => 'auth'], function () {
 	Route::resource('paciente', 'PacienteController');
+	Route::get('paciente.create_update/{id?}', 'PacienteController@create_update')->name('paciente.create_update');
 	Route::resource('domicilio', 'DomicilioController');
 
 	Route::get('paciente.prueba/{id}', 'PacienteController@prueba')->name('paciente.prueba');

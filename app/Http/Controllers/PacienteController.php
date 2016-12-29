@@ -31,6 +31,18 @@ class PacienteController extends Controller {
 	}
 
 	/**
+	 * Show or edit the form for creating or updatingresource.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function create_update($id = null) {
+		//dd($id);
+		$paciente = Paciente::with('direccion')->findOrFail($id);
+		dd($paciente);
+		//return view('paciente.create_update');
+	}
+
+	/**
 	 * Store a newly created resource in storage.
 	 *
 	 * @param  \Illuminate\Http\Request  $request
