@@ -58,9 +58,10 @@ class PacienteController extends Controller {
 				return redirect('paciente/create')->withErrors($validator)->withInput();
 			}
 		}
+		//var_dump($request->all());
 
-		$paciente = new Paciente($request->all());
-		$paciente->save();
+		$paciente = Paciente::updateOrCreate(array('id' => $request->id), $request->all());
+		//$paciente->save();
 
 		if ($request->ajax()) {
 			return response()->json(

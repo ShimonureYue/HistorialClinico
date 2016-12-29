@@ -1,6 +1,6 @@
 <form class="form-horizontal form-label-left input_mask">
 
-	{!! Form::hidden('id', null, ['class' => 'form-control', 'placeholder'=>"Id"]) !!}
+	{!! Form::text('id', null, ['class' => 'form-control', 'placeholder'=>"Id"]) !!}
 
 	<div class="col-md-6 col-sm-6 col-xs-12 form-group ">
 		{{ Form::label('nombre', null, ['class' => 'control-label']) }}

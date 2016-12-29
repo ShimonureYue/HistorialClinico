@@ -15,9 +15,12 @@ $(document).ready(function () {
 			url: url_base + 'paciente',
 			success: function (data) {
 				console.log(data);
-				//Paso 2. Domicilio
+				//Paso 2. Cambio al TAB de Domicilio
 				$('#domicilio-tab').tab('show');
-				//$("#task" + task_id).remove();
+				
+				//Paso 3. Lleno el input para el ID del Paciente
+				$('input[name=id]').val(data.data.paciente_id);
+
 			},
 			error: function (data) {
 				showErrorsFlashDiv($('#flashajax_error'), data.responseJSON.data);
@@ -44,28 +47,6 @@ function crearPaciente() {
 	});
 	console.log('registrando');
 }
-
-
-
-/*
- $.ajaxSetup({
- headers: {
- 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
- }
- });
- $.ajax({
- type: "POST",
- url: 'paciente/',
- success: function (data) {
- console.log(data);
- //$("#task" + task_id).remove();
- },
- error: function (data) {
- console.log('Error:', data);
- }
- });
- }
- */
 
 function pruebaAjax(paciente_id) {
 

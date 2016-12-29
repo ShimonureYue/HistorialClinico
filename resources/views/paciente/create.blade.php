@@ -31,7 +31,7 @@
 							{{ Form::close() }}
                         </div>
                         <div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="domicilio-tab">
-							{{ Form::open(['url' => 'domicilio.store','id' => 'ficha']) }}
+							{{ Form::open(['url' => 'domicilio','id' => 'form_domicilio']) }}
 							@include('paciente.domicilio.fields')
 							{{ Form::close() }}
                         </div>
