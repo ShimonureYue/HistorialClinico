@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Paciente;
+use App\Models\Direccion;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Flash;
@@ -17,7 +18,6 @@ class PacienteController extends Controller {
 	public function index() {
 
 		$pacientes = Paciente::paginate(env('DEFAULT_PAGINATION'));
-
 		return view('paciente.index', ['pacientes' => $pacientes]);
 	}
 
@@ -36,10 +36,11 @@ class PacienteController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function create_update($id = null) {
-		//dd($id);
-		$paciente = Paciente::with('direccion')->findOrFail($id);
-		dd($paciente);
-		//return view('paciente.create_update');
+		if ($id) {
+			$paciente = Paciente::with('direccion')->findOrFail($id);
+			return view('paciente.create_update')->with('paciente', $paciente);
+		}
+		return view('paciente.create_update');
 	}
 
 	/**
@@ -88,6 +89,34 @@ class PacienteController extends Controller {
 			Flash::success('Paciente registrado con éxito');
 			return redirect(route('paciente.index'));
 		}
+	}
+
+	/**
+	 * Store a newly created resource in storage.
+	 *
+	 * @param  \Illuminate\Http\Request  $request
+	 * @return \Illuminate\Http\Response
+	 */
+	public function store_with_relations(Request $request) {
+		$validator = Validator::make($request->all()
+						, [
+					'nombre' => 'required',
+						], [
+					'nombre.required' => 'El nombre es obligatorio'
+						]
+		);
+		if ($validator->fails()) {
+			return redirect('paciente.create_update')->withErrors($validator)->withInput();
+		}
+
+		$paciente = Paciente::updateOrCreate(array('id' => $request->id), $request->all());
+		$direccion = Direccion::updateOrCreate(array('paciente_id' => $paciente->id), $request->direccion);
+
+		Flash::success('Información guardada con éxito');
+		return redirect(route('paciente.create_update', ['id' => $paciente->id]));
+
+
+		//dd($request->all());
 	}
 
 	/**

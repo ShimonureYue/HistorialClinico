@@ -26,13 +26,7 @@
 			<div class="menu_section">
                 <h3>General</h3>
                 <ul class="nav side-menu">
-                    <li><a><i class="fa fa-users"></i>Pacientes<span class="fa fa-chevron-down"></span></a>
-                        <ul class="nav child_menu">
-							<li><a href="{{ route('paciente.index') }}">Listar</a></li>
-                            <li><a href="{{ route('paciente.create') }}">Nuevo</a></li>
-                            <li><a href="#">Link 2</a></li>
-                            <li><a href="#">Link 3</a></li>
-                        </ul>
+                    <li><a href="{{route('paciente.index')}}"><i class="fa fa-users"></i>Pacientes</a>
                     </li>
                     <li>
                         <a href="javascript:void(0)">

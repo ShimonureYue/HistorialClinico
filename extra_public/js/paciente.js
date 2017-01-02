@@ -9,6 +9,8 @@ $(document).ready(function () {
 		});
 		e.preventDefault(e);
 		console.log('Crear paciente...');
+		console.log($(this));
+		console.log($(this).serialize());
 		$.ajax({
 			type: "POST",
 			data: $(this).serialize(),

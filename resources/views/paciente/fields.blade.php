@@ -1,4 +1,4 @@
-<form class="form-horizontal form-label-left input_mask">
+<div class="form-horizontal form-label-left input_mask">
 
 	{!! Form::text('id', null, ['class' => 'form-control', 'placeholder'=>"Id"]) !!}
 
@@ -27,12 +27,12 @@
 		{!! Form::text('curp', null, ['class' => 'form-control ', 'placeholder'=>"CURP"]) !!}
 	</div>
 
-	<div class="col-md-6 col-sm-6 col-xs-12 form-group ">
+	<div class="col-md-3 col-sm-3 col-xs-6 form-group ">
 		{{ Form::label('genero', 'Genero', ['class' => 'control-label']) }}
 		{{ Form::select('genero', Config::get('dropdowns.genero'), null, ['class' => 'form-control ', 'placeholder' => 'Selecciona el género']) }}
 	</div>
 
-	<div class="col-md-6 col-sm-6 col-xs-12 form-group ">
+	<div class="col-md-3 col-sm-3 col-xs-6 form-group ">
 		{{ Form::label('estado_civil', 'Estado civil', ['class' => 'control-label']) }}
 		{{ Form::select('estado_civil', Config::get('dropdowns.estado_civil'), null, ['class' => 'form-control ', 'placeholder' => 'Selecciona el estado civil']) }}
 	</div>
@@ -68,10 +68,7 @@
 	</div>
 
 
-	<div class="col-xs-12 form-group text-right">
-		<a href="{!! route('paciente.index') !!}" class="btn btn-danger">Cancelar</a>
-		{!! Form::submit('Guardar', ['class' => 'btn btn-success']) !!}
-	</div>
+	
 
 
-</form>
+</div>

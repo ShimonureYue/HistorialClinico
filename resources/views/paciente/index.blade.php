@@ -9,6 +9,11 @@
 
     <div class="clearfix"></div>
 	<div class="row">
+		<div class="col-xs-12 form-group text-right">
+			<a href="{{ route('paciente.create_update') }}" class="btn btn-success">Nuevo</a>
+		</div>
+	</div>
+	<div class="row">
 		@include('paciente.table')
 	</div>
 </div>

@@ -15,7 +15,7 @@ class CreateDireccionesTable extends Migration {
 		Schema::create('direcciones', function(Blueprint $table) {
 			$table->increments('id');
 			$table->integer('paciente_id')->unsigned()->nullable();
-			$table->foreign('paciente_id')->references('id')->on('pacientes');
+			//$table->foreign('paciente_id')->references('id')->on('pacientes');
 			$table->string('calle')->nullable();
 			$table->string('num_exterior')->nullable();
 			$table->string('num_interior')->nullable();
