@@ -46,6 +46,9 @@ elixir(function(mix) {
     // Gentelella
     mix.copy('vendor/bower_components/gentelella/build/js/custom.min.js', 'public/js/gentelella.min.js');
 	
+	//Extras de animación de bootstrap
+	mix.copy('extra_public/js/responsive-tabs.js', 'public/js/responsive-tabs.js');
+	
 	//Paciente
 	mix.copy('extra_public/js/paciente.js', 'public/js/paciente.js');
 	mix.copy('extra_public/js/functions.js', 'public/js/functions.js');

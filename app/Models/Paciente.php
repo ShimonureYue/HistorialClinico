@@ -65,9 +65,6 @@ class Paciente extends Model {
 		'a_materno' => 'string',
 		'fecha_nacimiento' => 'date',
 		'estado_civil' => 'string',
-		'nivel_socioeconomico' => 'string',
-		'tipo_vivienda' => 'string',
-		'renta_propia' => 'string',
 		'tipo_sanguineo' => 'string',
 		'grupo_etnico' => 'string',
 		'religion' => 'string',
@@ -82,6 +79,16 @@ class Paciente extends Model {
 	public function direccion()
     {
         return $this->hasOne('App\Models\Direccion');
+    }
+	
+	/**
+	 * Relation OneToOne with Antecedentes no Patologicos
+	 * 
+	 * @return relation
+	 */
+	public function antecedentes_no_patologicos()
+    {
+        return $this->hasOne('App\Models\Nopatologicos');
     }
 
 }

@@ -30,11 +30,11 @@
 	</div>
 	<div class="col-md-6 col-sm-6 col-xs-12 form-group ">
 		{{ Form::label('direccion[telefono]','Télefono',null, ['class' => 'control-label']) }}
-		{{ Form::number('direccion[telefono]', null, ['class' => 'form-control ', 'placeholder'=>"Télefono"]) }}
+		{{ Form::text('direccion[telefono]', null, ['class' => 'form-control ', 'placeholder'=>"Télefono"]) }}
 	</div>
 	<div class="col-md-6 col-sm-6 col-xs-12 form-group ">
 		{{ Form::label('direccion[celular]','Celular',null, ['class' => 'control-label']) }}
-		{{ Form::number('direccion[celular]', null, ['class' => 'form-control ', 'placeholder'=>"Celular"]) }}
+		{{ Form::text('direccion[celular]', null, ['class' => 'form-control ', 'placeholder'=>"Celular"]) }}
 	</div>
 
 

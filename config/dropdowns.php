@@ -27,7 +27,11 @@ return [
 		'b_positivo' => 'B+',
 		'ab_negativo' => 'AB-',
 		'ab_positivo' => 'AB+',
-	]
-	
+	],
+	'nivel_socioeconomico' => [
+		'baja' => 'Baja',
+		'media' => 'Media',
+		'alta' => 'Alta'
+	],
 ];
 

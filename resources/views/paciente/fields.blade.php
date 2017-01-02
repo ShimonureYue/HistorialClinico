@@ -38,21 +38,6 @@
 	</div>
 
 	<div class="col-md-6 col-sm-6 col-xs-12 form-group ">
-		{{ Form::label('nivel_socioeconomico', 'Nivel socioeconómico', ['class' => 'control-label']) }}
-		{{ Form::text('nivel_socioeconomico', null, ['class' => 'form-control ', 'placeholder'=>"Nivel socioeconómico"]) }}
-	</div>
-
-	<div class="col-md-6 col-sm-6 col-xs-12 form-group ">
-		{{ Form::label('tipo_vivienda', 'Tipo de Vivienda', ['class' => 'control-label']) }}
-		{{ Form::select('tipo_vivienda', Config::get('dropdowns.tipo_vivienda'), null, ['class' => 'form-control ', 'placeholder' => 'Selecciona el tipo de vivienda']) }}
-	</div>
-
-	<div class="col-md-6 col-sm-6 col-xs-12 form-group ">
-		{{ Form::label('renta_propia', '¿Renta o Propia?', ['class' => 'control-label']) }}
-		{{ Form::select('renta_propia', Config::get('dropdowns.renta_propia'), null, ['class' => 'form-control ', 'placeholder' => 'Selecciona una opción']) }}
-	</div>
-
-	<div class="col-md-6 col-sm-6 col-xs-12 form-group ">
 		{{ Form::label('tipo_sanguineo', 'Tipo de sangre', ['class' => 'control-label']) }}
 		{{ Form::select('tipo_sanguineo', Config::get('dropdowns.tipo_sanguineo'), null, ['class' => 'form-control ', 'placeholder' => 'Selecciona el tipo']) }}
 	</div>

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Paciente;
 use App\Models\Direccion;
+use App\Models\Nopatologicos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Flash;
@@ -98,6 +99,8 @@ class PacienteController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function store_with_relations(Request $request) {
+		
+		//dd($request->all());
 		$validator = Validator::make($request->all()
 						, [
 					'nombre' => 'required',
@@ -108,12 +111,31 @@ class PacienteController extends Controller {
 		if ($validator->fails()) {
 			return redirect('paciente.create_update')->withErrors($validator)->withInput();
 		}
-
-		$paciente = Paciente::updateOrCreate(array('id' => $request->id), $request->all());
-		$direccion = Direccion::updateOrCreate(array('paciente_id' => $paciente->id), $request->direccion);
+		//dd($request->all());
+		if($request->id == ''){//Para un paciente nuevo
+			$paciente = new Paciente;
+			//Carbon::createFromFormat('Y-m-d H', '1975-05-21 22')
+			$paciente->nombre = $request->nombre;
+			$paciente->a_paterno = $request->a_paterno;
+			$paciente->a_materno = $request->a_materno;
+			$paciente->fecha_nacimiento = $request->fecha_nacimiento;
+			$paciente->estado_civil = $request->estado_civil;
+			$paciente->tipo_sanguineo = $request->tipo_sanguineo;
+			$paciente->grupo_etnico = $request->grupo_etnico;
+			$paciente->religion = $request->religion;
+			
+			$paciente->save();
+			
+			$paciente_id = $paciente->id;
+		}else{
+			$paciente_id = $request->id;
+		}
+		$paciente = Paciente::updateOrCreate(array('id' => $paciente_id), $request->all());
+		$direccion = Direccion::updateOrCreate(array('paciente_id' => $paciente_id), $request->direccion);
+		$nopatologicos = Nopatologicos::updateOrCreate(array('paciente_id' => $paciente_id), $request->direccion);
 
 		Flash::success('Información guardada con éxito');
-		return redirect(route('paciente.create_update', ['id' => $paciente->id]));
+		return redirect(route('paciente.create_update', ['id' => $paciente_id]));
 
 
 		//dd($request->all());
