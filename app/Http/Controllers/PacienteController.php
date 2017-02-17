@@ -38,10 +38,23 @@ class PacienteController extends Controller {
 	 */
 	public function create_update($id = null) {
 		if ($id) {
-			$paciente = Paciente::with('direccion')->findOrFail($id);
+			$paciente = Paciente::with('direccion')->with('antecedentes_no_patologicos')->findOrFail($id);
 			return view('paciente.create_update')->with('paciente', $paciente);
 		}
 		return view('paciente.create_update');
+	}
+
+	/**
+	 * Show or edit the form for creating or updatingresource.
+	 *
+	 * @return \Illuminate\Http\Response
+	 */
+	public function view_full($id = null) {
+		if ($id) {
+			$paciente = Paciente::with('direccion')->with('antecedentes_no_patologicos')->findOrFail($id);
+			return view('paciente.view_full')->with('paciente', $paciente);
+		}
+		return redirect(route('paciente.index'));
 	}
 
 	/**
@@ -52,7 +65,7 @@ class PacienteController extends Controller {
 	 */
 	public function store(Request $request) {
 
-
+		//Validación de campos
 		$validator = Validator::make($request->all()
 						, [
 					'nombre' => 'required',
@@ -69,10 +82,10 @@ class PacienteController extends Controller {
 							'data' => $validator->messages()
 								), 400);
 			} else {
-				return redirect('paciente/create')->withErrors($validator)->withInput();
+				return redirect('paciente.create_update')->withErrors($validator)->withInput();
 			}
 		}
-		//var_dump($request->all());
+		dd($request->all());
 
 		$paciente = Paciente::updateOrCreate(array('id' => $request->id), $request->all());
 		//$paciente->save();
@@ -99,8 +112,9 @@ class PacienteController extends Controller {
 	 * @return \Illuminate\Http\Response
 	 */
 	public function store_with_relations(Request $request) {
-		
+
 		//dd($request->all());
+		//Validación del formulario del paciente
 		$validator = Validator::make($request->all()
 						, [
 					'nombre' => 'required',
@@ -112,7 +126,7 @@ class PacienteController extends Controller {
 			return redirect('paciente.create_update')->withErrors($validator)->withInput();
 		}
 		//dd($request->all());
-		if($request->id == ''){//Para un paciente nuevo
+		if ($request->id == '') {//Para un paciente nuevo
 			$paciente = new Paciente;
 			//Carbon::createFromFormat('Y-m-d H', '1975-05-21 22')
 			$paciente->nombre = $request->nombre;
@@ -123,16 +137,18 @@ class PacienteController extends Controller {
 			$paciente->tipo_sanguineo = $request->tipo_sanguineo;
 			$paciente->grupo_etnico = $request->grupo_etnico;
 			$paciente->religion = $request->religion;
-			
 			$paciente->save();
-			
+
 			$paciente_id = $paciente->id;
-		}else{
+		} else {
 			$paciente_id = $request->id;
+			$paciente = Paciente::updateOrCreate(array('id' => $paciente_id), $request->all());
+			$paciente_id = $paciente->id;
 		}
-		$paciente = Paciente::updateOrCreate(array('id' => $paciente_id), $request->all());
+		//dd($paciente->id);
+
 		$direccion = Direccion::updateOrCreate(array('paciente_id' => $paciente_id), $request->direccion);
-		$nopatologicos = Nopatologicos::updateOrCreate(array('paciente_id' => $paciente_id), $request->direccion);
+		$nopatologicos = Nopatologicos::updateOrCreate(array('paciente_id' => $paciente_id), $request->antecedentes_no_patologicos);
 
 		Flash::success('Información guardada con éxito');
 		return redirect(route('paciente.create_update', ['id' => $paciente_id]));
@@ -194,7 +210,12 @@ class PacienteController extends Controller {
 
 	public function destroy($id) {
 		//echo $id;
-		return response()->json(['Hola mundo', $id]);
+		//return response()->json(['Hola mundo', $id]);
+		$paciente = Paciente::findOrFail($id);
+		$paciente->delete();
+
+		Flash::success('Paciente eliminado con éxito');
+		return redirect(route('paciente.index'));
 	}
 
 }

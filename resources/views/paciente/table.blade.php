@@ -20,10 +20,9 @@
 				<td>
 					{!! Form::open(['route' => ['paciente.destroy', $paciente->id], 'method' => 'delete']) !!}
 					<div class='btn-group'>
-						<a href="{!! route('paciente.show', [$paciente->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
-						<a href="{!! route('paciente.edit', [$paciente->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
-						<a onclick="pruebaAjax({{ $paciente->id }})" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-trash"></i></a>
-						{!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('Are you sure?')"]) !!}
+						<a href="{!! route('paciente.view_full', [$paciente->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-eye-open"></i></a>
+						<a href="{!! route('paciente.create_update', [$paciente->id]) !!}" class='btn btn-default btn-xs'><i class="glyphicon glyphicon-edit"></i></a>
+						{!! Form::button('<i class="glyphicon glyphicon-trash"></i>', ['type' => 'submit', 'class' => 'btn btn-danger btn-xs', 'onclick' => "return confirm('¿Estas seguro de eliminar al paciente?')"]) !!}
 					</div>
 					{!! Form::close() !!}
 				</td>
