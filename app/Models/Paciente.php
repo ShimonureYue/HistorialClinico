@@ -90,5 +90,15 @@ class Paciente extends Model {
     {
         return $this->hasOne('App\Models\Nopatologicos');
     }
+	
+	/**
+	 * Relation OneToOne with Antecedentes Patologicos
+	 * 
+	 * @return relation
+	 */
+	public function antecedentes_patologicos()
+    {
+        return $this->hasOne('App\Models\Patologicos');
+    }
 
 }

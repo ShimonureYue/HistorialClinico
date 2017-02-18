@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Paciente;
 use App\Models\Direccion;
 use App\Models\Nopatologicos;
+use App\Models\Patologicos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Flash;
@@ -38,7 +39,10 @@ class PacienteController extends Controller {
 	 */
 	public function create_update($id = null) {
 		if ($id) {
-			$paciente = Paciente::with('direccion')->with('antecedentes_no_patologicos')->findOrFail($id);
+			$paciente = Paciente::with('direccion')
+					->with('antecedentes_no_patologicos')
+					->with('antecedentes_patologicos')
+					->findOrFail($id);
 			return view('paciente.create_update')->with('paciente', $paciente);
 		}
 		return view('paciente.create_update');
@@ -51,7 +55,10 @@ class PacienteController extends Controller {
 	 */
 	public function view_full($id = null) {
 		if ($id) {
-			$paciente = Paciente::with('direccion')->with('antecedentes_no_patologicos')->findOrFail($id);
+			$paciente = Paciente::with('direccion')
+					->with('antecedentes_no_patologicos')
+					->with('antecedentes_patologicos')
+					->findOrFail($id);
 			return view('paciente.view_full')->with('paciente', $paciente);
 		}
 		return redirect(route('paciente.index'));
@@ -145,10 +152,16 @@ class PacienteController extends Controller {
 			$paciente = Paciente::updateOrCreate(array('id' => $paciente_id), $request->all());
 			$paciente_id = $paciente->id;
 		}
-		//dd($paciente->id);
-
-		$direccion = Direccion::updateOrCreate(array('paciente_id' => $paciente_id), $request->direccion);
-		$nopatologicos = Nopatologicos::updateOrCreate(array('paciente_id' => $paciente_id), $request->antecedentes_no_patologicos);
+		
+		if(isset($request->antecedentes_patologicos)){
+			$direccion = Direccion::updateOrCreate(array('paciente_id' => $paciente_id), $request->antecedentes_patologicos);
+		}
+		if(isset($request->antecedentes_no_patologicos)){
+			$nopatologicos = Nopatologicos::updateOrCreate(array('paciente_id' => $paciente_id), $request->antecedentes_no_patologicos);
+		}
+		if(isset($request->antecedentes_patologicos)){
+			$patologicos = Patologicos::updateOrCreate(array('paciente_id' => $paciente_id), $request->antecedentes_patologicos);
+		}
 
 		Flash::success('Información guardada con éxito');
 		return redirect(route('paciente.create_update', ['id' => $paciente_id]));
