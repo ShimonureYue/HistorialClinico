@@ -40,6 +40,9 @@
 						<li role="presentation" class="">
 							<a href="#tab_content3" role="tab" id="no_patologicos-tab" data-toggle="tab" aria-expanded="false">Ant. no patológicos</a>
                         </li>
+						<li role="presentation" class="">
+							<a href="#tab_content4" role="tab" id="patologicos-tab" data-toggle="tab" aria-expanded="false">Ant. patológicos</a>
+                        </li>
 					</ul>
 					<div id="myTabContent" class="tab-content responsive">
 						@include('flash::errors')
@@ -52,6 +55,10 @@
 						
 						<div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="no_patologicos-tab">
 							@include('paciente.no_patologicos.fields')
+                        </div>
+						
+						<div role="tabpanel" class="tab-pane fade" id="tab_content4" aria-labelledby="patologicos-tab">
+							@include('paciente.patologicos.fields')
                         </div>
 					</div>
 				</div>
